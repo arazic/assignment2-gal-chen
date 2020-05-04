@@ -1,21 +1,340 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<script src="./jquery-3.4.1.slim.min.js"></script>
-		<script type="text/javascript" src="./app.js"></script>
-	</head>
 
-	<body>
-		<div id="score">
-			<label for="lblScore">SCORE:</label>
-			<input id="lblScore" type="text" />
-		</div>
-		<div id="time">
-			<label for="lblTime">TIME:</label>
-			<input id="lblTime" type="text" />
-		</div>
+<head>
+	<script src="./jquery-3.4.1.slim.min.js"></script>
+	<script type="text/javascript" src="./app.js"></script>
+	<script src="./signup_login.js"></script>
+	<script src="./navigation.js"></script>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;1,200&display=swap" rel="stylesheet">
+
+	<script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+		integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+	<section>
+		<nav>
+			<div class="logo">
+				<ul class="logo_img_names">
+					<li>
+					</li>
+					<li> </li>
+					<li> </li>
+					<li> <img src="pac.png" width="160px" height="70px" style="margin-top: 7px;
+						margin-left: 2px;"></li>
+					<label id="connected" style="font-size: 8px; padding-top:  23%;">welcome guest</label>
+				</ul>
+
+			</div>
+			<ul class="nav-links">
+				<li><a href="#welcome" onclick="welcome()">home</a></li>
+				<li><a href="#signup" onclick="signupForm()">signup</a></li>
+				<li><a href="#login" onclick="loginForm()">login</a></li>
+				<li><a href="#play" onclick="play()">play</a></li>
+				<li><a href="#about" onclick="aboutForm()">about</a></li>
+			</ul>
+		</nav>
+	</section>
+
+
+	<div id="settings" class="settings" style="display: none;">
+		<br>
+		<br>
+		<br>
+		<h3 class="settingsC">Choose yoar game buttons</h3>
+		<label id="upButtonCode" for="upButton">up button</label>
+		<input type="text" size="2" onkeydown="getUpButtonCode(event)">
+		<br>
+		<label id="downButtonCode" for="downButton">down button</label>
+		<input type="text" size="2" onkeydown="getDownButtonCode(event)">
+		<br>
+		<label id="rightButtonCode" for="rightButton">right button</label>
+		<input type="text" size="2" onkeydown="getRightButtonCode(event)">
+		<br>
+		<label id="leftButtonCode" for="leftButton">left button</label>
+		<input type="text" size="2" onkeydown="getLeftButtonCode(event)">
+		<br>
+		<label for="ballsNumber">Number of balls</label>
+		<input type="number" id="balls" size=2 max="90" min="50" step="1" value=50>
+		<br>
+		<label for="monsters">Number of monsters</label>
+		<input type="number" id="monsters" size=1 max="4" min="1" step="1" value=1>
+		<br>
+		<label for="timer">Playing time (sec)</label>
+		<input type="number" id="timer" size=5 min="60" step="1" value=60>
+
+		<h3 class=settingsC>Choose balls colors</h3>
+		<label for="5pointsBall">5 points ball</label>
+		<input type="color" id="5pointsBall" size=1 value="#008000">
+		<br>
+		<label for="15pointsBall">15 points ball</label>
+		<input type="color" id="15pointsBall" size=1 value="#0000FF">
+		<br>
+		<label for="25pointsBall">25 points ball</label>
+		<input type="color" id="25pointsBall" size=1 value="#ff0000">
+		<br>
+		<button type="button" onclick="submitSettings()">Submit</button>
+		<button type="button" onclick="randomSettings()">Random </button>
+	</div>
+
+
+	<div id="mainGame" class="game" style="height: 50%; display: none;">
+		<audio loop id="gameSong">
+			<source src="resources/gameSong.mp3" type="audio/mpeg">
+		</audio>
+		<audio id="win">
+			<source src="resources/Win.mp3" type="audio/mpeg">
+		</audio>
+		<audio id="timeEnd">
+			<source src="resources/TimeEnd.mp3" type="audio/mpeg">
+		</audio>
+		<audio id="death">
+			<source src="resources/Death.mp3" type="audio/mpeg">
+		</audio>
+		<audio id="disqualification">
+			<source src="resources/disqualification.mp3" type="audio/mpeg">
+		</audio>
+		<audio id="clockAudio">
+			<source src="resources/clockTime.mp3" type="audio/mpeg">
+		</audio>
+
+
 		<div id="game">
+			<div class="gameSettings">
+				<div id="score" style="right: 0px;">
+					<label for="lblScore" class="lblScore"><b>SCORE:</b></label>
+					<input id="lblScore" class="inputScore" type="text" size="5" />
+					<label for="lblTime" class="lblScore"><b>TIME:</b></label>
+					<input id="lblTime" class="inputScore" type="text" size="5" />
+					<label for="lblLives" class="lblScore"><b>Lives:</b></label>
+					<input id="lblLives" class="inputScore" type="text" size="5" />
+				</div>
+				<div class="allSettings"  >
+					<p class="gs" id="timerSetting">Timer: </p>
+					<p class="gs" id="monstertsNumber">Number of monsters: </p>
+					<p class="gs" id="ballsNumber">Number of balls: </p>
+					<p class="gs" id="ballsRemains">Remain balls: </p>
+					<p class="gs" id="upButtonS">up button: </p>
+					<p class="gs" id="downButtonS">down button: </p>
+					<p class="gs" id="rightButtonS">right button: </p>
+					<p class="gs" id="leftButtonS">left button: </p>
+					<label class="gs" for="5pointsColorS" id="5pointsColorS">5 points color</label>
+					<br>
+					<label class="gs" for="15pointsColorS" id="15pointsColorS">15 points color</label>
+					<br>
+					<label class="gs" for="25pointsColorS" id="25pointsColorS">25 points color</label>
+					<br>
+					<button id="startGame" type="button" onclick="startNewGame()">New Game</button>
+				</div>
+			</div>
 			<canvas id="canvas" height="600" width="600"></canvas>
 		</div>
-	</body>
+	</div>
+
+
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+
+	<div id="welcome">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-5 mx-auto">
+					<div class="myform form ">
+						<div class="logo mb-3">
+							<div class="col-md-12 text-center">
+								<h1>welcome</h1>
+								<br>
+							</div>
+						</div>
+						<form action="" method="post" name="login">
+							<div class="col-md-12 text-center ">
+								<button id="loginFormBtn" type="button" onclick="loginForm()"
+									class="button">Login</button>
+							</div>
+							<div class="col-md-12 ">
+								<div class="login-or">
+									<hr class="hr-or">
+									<span class="span-or">or</span>
+								</div>
+							</div>
+							<div class="col-md-12 text-center ">
+								<button id="signupFormBtn" type="button" onclick="signupForm()" class="button">sign
+									up </button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div id="login" style="display: none;">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-5 mx-auto">
+					<div class="myform form ">
+						<div class="logo mb-3">
+							<div class="col-md-12 text-center">
+								<h1>Login</h1>
+							</div>
+						</div>
+						<form action="" method="post" name="login">
+							<div class="form-group">
+								<input type="text" name="userNameLogIn" class="form-control" id="userNameLogIn"
+									aria-describedby="userNameHelp" placeholder="user name">
+							</div>
+							<div class="form-group">
+								<input type="password" name="passwordLogIn" id="passwordLogIn" class="form-control"
+									aria-describedby="passHelp" placeholder="Password">
+							</div>
+							<br>
+							<div class="col-md-12 text-center ">
+								<button id="loginBtn" type="button" onclick="logFunc()" class="button">Login</button>
+							</div>
+							<div class="col-md-12 ">
+								<div class="login-or">
+									<hr class="hr-or">
+									<span class="span-or">or</span>
+								</div>
+							</div>
+							<div class="form-group">
+								<p class="text-center">Don't have account? <a href="#signup" onclick="signupForm()">Sign
+										up here</a>
+								</p>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div id="signup" style="display: none;">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-5 mx-auto">
+					<div class="myform form ">
+						<div class="logo mb-3">
+							<div class="col-md-12 text-center">
+								<h1>sign in</h1>
+							</div>
+						</div>
+						<form action="" method="post" name="signup">
+							<div class="form-group">
+								<label for="registerUserName"></label>
+								<input type="text" name="userName" class="form-control" id="userName"
+									aria-describedby="emailHelp" placeholder="user name">
+							</div>
+							<div class="form-group">
+								<label for="registerUserName"></label>
+								<input type="password" name="password" id="password" class="form-control"
+									aria-describedby="emailHelp" placeholder="Password">
+							</div>
+							<div class="form-group">
+								<label for="registerFirstName"></label>
+								<input type="text" name="firstName" id="firstName" class="form-control"
+									aria-describedby="emailHelp" placeholder="First name">
+							</div>
+							<div class="form-group">
+								<label for="registerLastName"></label>
+								<input type="text" name="lastName" id="lastName" class="form-control"
+									aria-describedby="emailHelp" placeholder="Last name">
+							</div>
+							<div class="form-group">
+								<label for="registerEmail"></label>
+								<input type="email" name="email" class="form-control" id="email"
+									aria-describedby="emailHelp" placeholder="Email">
+							</div>
+							<br>
+							<div class="form-group">
+								<label for="registerDate"></label>
+								<input type="date" name="date" class="form-control" id="date"
+									aria-describedby="dateHelp" placeholder="date">
+							</div>
+							       
+							<div class="col-md-12 text-center ">
+								<button type="button" class="button" onclick="signingUp()">Sign
+									up </button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<dialog id="about" class="modal">
+		<div class="modal-content">
+			<span class="close" onclick="closeAbout()">&times;</span>
+			<p>
+				<h4 style="font-size: 30px; font:bold; letter-spacing: 3px;">Abount </h4>
+				<h3>About Us</h3>
+				gal borabia 203535802
+				<br>chen arazi 307875633
+				<br>
+			</p>
+
+			<div class="col-md-12 ">
+				<div class="login-or">
+					<hr class="hr-or">
+					<span class="span-or"> web</span>
+				</div>
+			</div>
+			<div class="form-group">
+				<p>
+					<h3>Jquery Plugin</h3>
+					jquery.validate
+				</p>
+				<br>
+				<p>
+					<h3>Templates</h3>
+					Form design- https://bootsnipp.com/snippets/bxzmb
+					<br>
+					Fotter design- https://mdbootstrap.com/docs/jquery/navigation/footer/
+				</p>
+				<br>
+				<p>
+					<h3>Challenges</h3>
+					The beginning was the hardest,
+					<br>
+					learning a new scripting language was the biggest challenge.
+					<br>
+					After a while we adjusted and enjoyed ourselves.
+				</p>
+			</div>
+		</div>
+	</dialog>
+
+
+	<br>
+	<br>
+	<section>
+		<footer>
+			<div class="footer">
+				<div class="footer-content">
+					<div style="font-size: 10px; width: 100%; margin-top: 10px;">
+						Our site offers a fun experience of a unique customized user game!
+						<br>
+						To contact us: &copy; galbo@post.bgu.ac.il | arazic@post.bgu.ac.il | packman game
+					</div>
+				</div>
+			</div>
+		</footer>
+	</section>
+
+</body>
+
 </html>

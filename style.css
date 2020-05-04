@@ -1,0 +1,352 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+
+body{
+    background-color: #eedee7;
+    font-family: 'Poppins', sans-serif;
+    width: 100%;
+    min-height: 400px;
+    margin-bottom: 100px;
+    clear: both;
+    text-align: center;
+    overflow: hidden; /* Hide scrollbars */
+
+    
+}
+.button{
+        box-shadow: 3px 4px 0px 0px #393c3d;
+        background:linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
+        background-color:#ededed;
+        border-radius:10px;
+        border:1px solid #d4ced4;
+        display:inline-block;
+        cursor:pointer;
+        color:#1e4852;
+        font-family: 'Poppins', sans-serif;
+        font-size:12px;
+        padding:7px 20px;
+        text-decoration:none;
+        text-shadow:0px 1px 0px #e1e2ed;
+    
+}
+
+.button:hover {
+    background:linear-gradient(to bottom, #bab1ba 5%, #ededed 100%);
+    background-color:#bab1ba;
+}
+.button:active {
+    position:relative;
+    top:1px;
+}
+.topnav a:hover {
+    background-color: #ddd;
+    color: #8b647a;
+  }
+
+nav{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 8vh;
+    height:12%;
+    background-color: #5d4954;
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+    top: 0;
+    width: 100%;
+    position: fixed;
+}
+
+.logo{
+    color: rgb(226, 226, 226);
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-size: 20px;
+}
+
+.logo_img_names{
+    display: flex;
+	list-style: none;
+	text-decoration: none;
+	letter-spacing: 1px;
+    width: 80%; 
+    bottom: 0px;
+	margin: 4px;
+  	padding: 0px;
+  	box-sizing: border-box;
+}
+.nav-links{
+    display: flex;
+    justify-content: space-around;
+    width: 37%;
+}
+
+.nav-links li{
+    list-style: none;
+}
+
+.nav-links a{
+    color: rgb(226, 226, 226);
+    text-decoration: none;
+    letter-spacing: 3px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.footer{
+    background-color: #5d4954;
+    color: rgb(226, 226, 226);
+    width:100%;
+    height: 60px;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    margin-bottom: 0px;
+}
+
+.footer-bottom{
+    background-color: #5d4954;
+    color: rgba(226, 226, 226, 0.685);
+    height: 40px;
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    padding-top: 10px;
+}
+
+.footer-content{
+    border: 1px solid rebeccapurple;
+    color: rgba(226, 226, 226, 0.685);
+    height: 350px;
+}
+
+   .game{
+    width: 100%;
+    margin-top:  0%;
+    padding-top: 80px;
+    padding-right:50px;
+    padding-bottom: 20px;
+    padding-left: 50x;
+    font-size: 10px;
+  }
+  
+
+
+  .inputScore
+  {
+      border: 1px solid black;
+      padding-top: 4px;
+      padding-right:5px;
+      padding-bottom:5px;
+      padding-left: 4px;
+  }
+  .lblScore
+  {
+      padding-top: 8px;
+      padding-right:8px;
+      padding-bottom:8px;
+      padding-left: 8px;
+  }
+  .gameSettings
+  {
+      float: left;
+      margin-left: 12%;
+      margin-top:  2%;
+      text-align: left ;
+      
+  }
+  .gs
+  {
+    padding-top: 2px;
+    padding-right:2px;
+    padding-bottom:2px;
+    padding-left: 2x;
+    font-size: 13px;
+  }
+  
+#canvas
+{
+    margin-top: 2%;
+    border: 3px solid black;
+    padding: 0px;
+    height: 38%;
+    width: 32%;
+}
+
+.settings
+{
+    margin-top: 5%;
+}
+
+
+#startGame
+{
+    height: 30%;
+    width: 30%;
+    float: left;
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+
+}
+
+.footer-div{
+    float: left;
+    width: 33.33%;
+    padding: 10px;
+    height: 300px; 
+    color: rgba(226, 226, 226, 0.685);
+    text-decoration: none;
+    letter-spacing: 3px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+
+a{
+text-decoration:none !important;
+}
+
+h1,h2,h3{
+     font-family: 'Kaushan Script', cursive;
+}
+
+h4{
+    font-family: 'Poppins', sans-serif;
+}
+
+.myform{
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 1rem;
+    margin: 0 auto;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    pointer-events: auto;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: 1.1rem;
+    outline: 0;
+    width: 100%;
+    max-width: 400px;
+}
+
+.tx-tfm{
+     text-transform:uppercase;
+}
+
+.mybtn{
+     border-radius:50px;
+}
+    
+.login-or {
+    position: relative;
+     color: #aaa;
+     margin-top: 10px;
+     margin-bottom: 10px;
+     padding-top: 10px;
+     padding-bottom: 10px;
+}
+
+.span-or {
+     display: block;
+     position: absolute;
+     left: 50%;
+     top: -2px;
+     margin-left: -25px;
+     background-color: #fff;
+     width: 50px;
+     text-align: center;
+}
+
+.hr-or {
+     height: 1px;
+     margin-top: 0px !important;
+     margin-bottom: 0px !important;
+}
+
+
+form .error {
+     color: #ff0000;
+}
+
+
+.fa-linkedin {
+    border-radius: 50%;
+    background: #007bb5;
+    color: white;
+  }
+  
+  .fa-facebook {
+    border-radius: 50%;
+    background: #3B5998;
+    color: white;
+  }
+  
+  .fa-twitter {
+    border-radius: 50%;
+    background: #55ACEE;
+    color: white;
+  }
+
+  .fa-twitter:hover {
+    opacity: 0.7;
+}
+.fa-facebook:hover {
+    opacity: 0.7;
+}
+.fa-linkedin:hover {
+    opacity: 0.7;
+}
+
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content */
+  .modal-content {
+    background-color: #5d4954;
+    color: rgba(226, 226, 226, 0.685);
+    font-family: 'Poppins', sans-serif;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
